@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('index');
+
+Route::get('employee/create', 'EmployeeController@create')->name('employee.create');
+Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
+Route::get('employee/{id}', 'EmployeeController@show')->name('employee.show')->middleware('signed');
+Route::put('employee/{id}/update', 'EmployeeController@update')->name('employee.update');
+Route::delete('employee/{id}', 'EmployeeController@destroy')->name('employee.destroy');
+
+Route::resource('role', 'RoleController');
